@@ -1,0 +1,35 @@
+body {
+  display: flex;
+  flex-flow: column;
+  background-color: lightblue;
+  align-items: center;
+}
+
+.menu {
+  display: flex;
+  justify-content: center;
+}
+
+.remake_grid_button {
+  background-color: lightcoral;
+  border: none;
+  padding: 10px 50px;
+}
+
+.sketchbook {
+  display: flex;
+  flex-flow: column;
+  width: 1000px;
+  height: 1000px;
+  background-color: lightyellow;
+}
+
+.sketchbook-row {
+  display: flex;
+  flex: 1 0 auto;
+}
+
+.sketchbook-node {
+  display: flex;
+  flex: 1 0 auto;
+}
