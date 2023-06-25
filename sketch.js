@@ -36,7 +36,6 @@ function makeGrid(width, height) {
       const node = document.createElement("div");
       node.classList.add("sketchbook-node");
       node.addEventListener("mouseover", () => {
-        console.log("test");
         const currentSaturation = node.getAttribute("data-saturation");
         if (currentSaturation === null) {
           const nodeHue = randInt(360);
