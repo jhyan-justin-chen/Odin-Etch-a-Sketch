@@ -1,7 +1,9 @@
-function getRandomColor() {
-  return `#${(0x1000000 + Math.floor(Math.random() * 0x1000000))
-    .toString(16)
-    .substring(1)}`;
+function randInt(max) {
+  return Math.floor(Math.random() * max + 1);
+}
+
+function setHSLColor(hue, saturation, lightness) {
+  return `hsl(${hue}, ${saturation}%, ${lightness}%)`;
 }
 
 function makeGrid(width, height) {
@@ -15,7 +17,33 @@ function makeGrid(width, height) {
       node.classList.add("sketchbook-node");
       node.addEventListener("mouseover", () => {
         console.log("test");
-        node.setAttribute("style", `background-color: ${getRandomColor()}`);
+        const currentSaturation = node.getAttribute("data-saturation");
+        if (currentSaturation === null) {
+          const nodeHue = randInt(360);
+          const nodeLight = randInt(100);
+          node.setAttribute(
+            "style",
+            `background-color: ${setHSLColor(nodeHue, 10, nodeLight)}`
+          );
+          node.setAttribute("data-saturation", 10);
+          node.setAttribute("data-hue", nodeHue);
+          node.setAttribute("data-light", nodeLight);
+        } else if (currentSaturation < 100) {
+          const nodeHue = node.getAttribute("data-hue");
+          const nodeLight = node.getAttribute("data-light");
+          node.setAttribute(
+            "style",
+            `background-color: ${setHSLColor(
+              nodeHue,
+              parseInt(currentSaturation, 10) + 10,
+              nodeLight
+            )}`
+          );
+          node.setAttribute(
+            "data-saturation",
+            parseInt(currentSaturation, 10) + 10
+          );
+        }
       });
       rowContainer.appendChild(node);
     }
