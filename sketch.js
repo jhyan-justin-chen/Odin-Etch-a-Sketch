@@ -6,6 +6,26 @@ function setHSLColor(hue, saturation, lightness) {
   return `hsl(${hue}, ${saturation}%, ${lightness}%)`;
 }
 
+function promptGridSize() {
+  const size = prompt(
+    "Please enter the size of the grid you would like.\nPlease use the format [width]x[height].\nThe maximum grid size is 100x100.",
+    "16x16"
+  ).split("x");
+  const width = parseInt(size[0], 10);
+  const height = parseInt(size[1], 10);
+  if (width <= 100 && width > 0 && height <= 100 && height > 0) {
+    clearGrid();
+    makeGrid(width, height);
+  } else {
+    alert("Invalid size provided.");
+  }
+}
+
+function clearGrid() {
+  const container = document.querySelector(".sketchbook");
+  container.replaceChildren();
+}
+
 function makeGrid(width, height) {
   const container = document.querySelector(".sketchbook");
 
